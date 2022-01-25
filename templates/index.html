@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto price</title>
+
+</head>
+<body>
+
+<div>
+    <h1>Crypto</h1>
+    <ul>
+        {% for crypto in crypto %}
+            <li>{{crypto}}</li>
+        {% endfor %}
+        <li>{{ crypto_timestamps }}</li>
+
+
+    </ul>
+</div>
+
+
+
+</body>
+</html>
