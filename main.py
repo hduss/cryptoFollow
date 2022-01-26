@@ -12,7 +12,7 @@ def hello_world():
 
     currency = ['AUD', 'USD', 'GBP']
 
-    assets = requests.get('https://api.coincap.io/v2/assets')
+    assets = requests.get('https://api.coincap.io/v2/assets?limit=10')
     datas = []
     tab_head = ['Rank', 'Name', 'Price', 'Currency']
     if assets.status_code == 200:
@@ -22,6 +22,7 @@ def hello_world():
                 'name': d['name'],
                 'rank': d['rank'],
                 'priceUsd': d['priceUsd'],
+                'currency': 'USD'
             })
     print(f'Datas => {datas}')
 
