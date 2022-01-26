@@ -21,15 +21,14 @@
                     {% for data in datas %}
                         <tr>
                             <td>{{ data['rank'] }}</td>
-                            <td>{{ data['name'] }}</td>
+                            <td><a href="" id="{{data['id']}}" class="link_id">{{ data['name'] }}</a></td>
                             <td>{{ data['priceUsd'] }}</td>
                             <td>{{ data['currency'] }}</td>
-
-
                         </tr>
                     {% endfor%}
                 </tbody>
             </table>
+            <div><a href="" id="show_more" data-limit="10" data-offset="10">Show more</a> </div>
         </div>
     </section>
 

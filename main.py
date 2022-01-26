@@ -29,9 +29,12 @@ def hello_world():
     return render_template('test.html', tab_head=tab_head, datas=datas, currency=currency)
 
 
-@app.route("/api/cryptos")
-def crypto():
-    assets = requests.get('https://api.coincap.io/v2/assets')
+@app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
+@app.route("/api/cryptos/<limit>/<offset>")
+def crypto(limit, offset):
+
+    args = f'?limit={limit}&offset={offset}'
+    assets = requests.get(f'https://api.coincap.io/v2/assets{args}')
     datas = []
     if assets.status_code == 200:
         for d in assets.json()['data']:
