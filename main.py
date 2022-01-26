@@ -24,8 +24,8 @@ def hello_world():
                 'priceUsd': d['priceUsd'],
                 'currency': 'USD'
             })
-    print(f'Datas => {datas}')
 
+    print(f'Datas => {datas}')
     return render_template('test.html', tab_head=tab_head, datas=datas, currency=currency)
 
 

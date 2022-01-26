@@ -1,6 +1,4 @@
 
-console.log('je suis la');
-
 document.addEventListener('click', function (event) {
 
     event.preventDefault();
@@ -19,7 +17,6 @@ document.addEventListener('click', function (event) {
 }, false);
 
 document.addEventListener('click', function (event) {
-
     event.preventDefault();
 	if (!event.target.matches('#show_more')) return;
 
@@ -42,18 +39,18 @@ document.addEventListener('click', function (event) {
 }, false);
 
 
-axios.get('/api/cryptos')
-
-.then(function (response) {
-
-    const tab = document.getElementById('main-tab');
-    console.log('Tab ici =>', tab);
-    console.log('Tab children => ', tab.children);
-
-
-
-    console.log(response);
-})
-.catch(function (error) {
-    console.log(error);
-});
+//axios.get('/api/cryptos')
+//
+//.then(function (response) {
+//
+//    const tab = document.getElementById('main-tab');
+//    console.log('Tab ici =>', tab);
+//    console.log('Tab children => ', tab.children);
+//
+//
+//
+//    console.log(response);
+//})
+//.catch(function (error) {
+//    console.log(error);
+//});
