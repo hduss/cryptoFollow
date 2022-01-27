@@ -33,22 +33,12 @@ showMore.addEventListener('click', function (event) {
     event.preventDefault();
 	if (!event.target.matches('#show_more')) return;
 
-    console.log('data-offset => ', event.target.getAttribute("data-offset"));
-	console.log('data-limit => ', event.target.getAttribute("data-limit"));
-
 	let limit = event.target.getAttribute("data-limit")
 	let offset = event.target.getAttribute("data-offset")
-
 	let table = document.querySelector('#main-tab')
-	let tbody = document.querySelector('tbody')
-	let lastRow = table.rows[ table.rows.length - 1 ];
-	console.log('last row => ', lastRow)
-//	main_table.append('<p>je suis crée la</p>')
-
 
     axios.get('/api/cryptos/' + limit + '/' + offset)
     .then(function (response) {
-        console.log(response);
 
         let returnDatas = response['data']['data']
         console.log('Datas => ', response['data']['data'])
@@ -60,30 +50,21 @@ showMore.addEventListener('click', function (event) {
 
             for(let i = 0; i < returnDatas.length; i++){
 
-            console.log('Datas i => ', returnDatas[i])
                 let tr = table.insertRow(-1);
-
                 let tdRank = tr.insertCell()
-                tdRank.innerHTML = returnDatas[i]['rank']
-
                 let tdName = tr.insertCell()
-                tdName.innerHTML = '<a href="" id="' + returnDatas[i]['id'] + '" class="link_id">' + returnDatas[i]['name'] + '</a>'
-
                 let tdPrice = tr.insertCell()
-                tdPrice.innerHTML = returnDatas[i]['priceUsd']
-
                 let tdCurrency = tr.insertCell()
+
+                tdRank.innerHTML = returnDatas[i]['rank']
+                tdName.innerHTML = '<a href="" id="' + returnDatas[i]['id'] + '" class="link_id">' + returnDatas[i]['name'] + '</a>'
+                tdPrice.innerHTML = returnDatas[i]['priceUsd']
                 tdCurrency.innerHTML = 'USD'
-
-
             }
-            let newLimit = parseInt(limit) + 10
+
+//            let newLimit = parseInt(limit) + 10
             let newOffset = parseInt(offset) + 10
-            event.target.setAttribute("data-limit", newLimit)
             event.target.setAttribute("data-offset", newOffset)
-
-
-
 
         }else{
             console.log('Fail get datas')

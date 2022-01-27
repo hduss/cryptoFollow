@@ -27,7 +27,7 @@ def hello_world():
             })
 
     print(f'Datas => {datas}')
-    return render_template('test.html', tab_head=tab_head, datas=datas, currency=currency, date=date_now)
+    return render_template('index.html', tab_head=tab_head, datas=datas, currency=currency, date=date_now)
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
