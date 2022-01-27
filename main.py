@@ -1,7 +1,7 @@
 import requests
 import json
 from flask import Flask, render_template, jsonify
-
+from datetime import date
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -11,6 +11,7 @@ app = Flask(__name__)
 def hello_world():
 
     currency = ['AUD', 'USD', 'GBP']
+    date_now = date.today()
 
     assets = requests.get('https://api.coincap.io/v2/assets?limit=10')
     datas = []
@@ -26,7 +27,7 @@ def hello_world():
             })
 
     print(f'Datas => {datas}')
-    return render_template('test.html', tab_head=tab_head, datas=datas, currency=currency)
+    return render_template('test.html', tab_head=tab_head, datas=datas, currency=currency, date=date_now)
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
