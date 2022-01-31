@@ -7,6 +7,8 @@ from markupsafe import escape
 app = Flask(__name__)
 
 
+
+
 @app.route("/")
 def hello_world():
 
@@ -28,6 +30,24 @@ def hello_world():
 
     print(f'Datas => {datas}')
     return render_template('index.html', tab_head=tab_head, datas=datas, currency=currency, date=date_now)
+
+@app.route('/api/coins')
+def get_coins():
+
+    args = f'?vs_currency=usd&per_page=10'
+    assets = requests.get(f'https://api.coingecko.com/api/v3/coins/markets{args}')
+
+    if assets.status_code == 200:
+        datas = assets.json()
+        return jsonify({
+            'status': 200,
+            'data': datas
+        })
+    else:
+        return jsonify({
+            'status': 300
+        })
+        
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
@@ -65,6 +85,9 @@ def change(currency, amount):
     currency_u = currency.upper()
 
     return f'Change => {currency} && amount => {amount}'
+
+
+
 
 
 @app.route("/api/test")

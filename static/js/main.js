@@ -1,4 +1,5 @@
 
+console.log('app => ', app)
 
 let linkId = document.querySelector(".link_id");
 let showMore = document.querySelector('#show_more');
