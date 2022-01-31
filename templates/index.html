@@ -49,10 +49,31 @@
     </section>
 
     <section>
-        <div id="app">
+
+        <!-- <ul id="app">
+            <li v-for="(item, index) in infos">
+                [[parentMessage]] - [[index]] - [[item.id]] 
+            </li>
+        </ul> -->
+
+        <ul id="app">
+            <li v-for="item in infos" v-if="item !== null">
+                [[ item.id ]]
+            </li>
+        </ul>
+
+        <!-- <div id="app">
+
+
+            Message: [[ infos ]]
             
-            Message: [[ info ]]
-        </div>
+
+             <ul v-for: ="info in infos">
+                <li v-for: ="i in info">
+                    [[ i ]]
+                </li>
+            </ul> -->
+        </div> 
 
     </section>
 
