@@ -50,7 +50,8 @@
 
     <section>
         <div id="app">
-            Message: [[ message ]]
+            
+            Message: [[ info ]]
         </div>
 
     </section>
@@ -58,22 +59,6 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="{{url_for('static', filename='js/main.js')}}"></script>
-
-    <script type="text/javascript">
-        
-    var app = new Vue({
-        el: '#app',
-        delimiters : ['[[', ']]'],
-        data: {
-            message: 'Hello Vue!'
-        }
-    })
-
-
-            
-    
-        
-    </script>
 
 
 </body>

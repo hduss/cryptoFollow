@@ -86,6 +86,31 @@ showMore.addEventListener('click', function (event) {
      console.log('je suis cliek after')
  });
 
+axios
+.get('/api/coins')
+.then((response) => {
+    console.log('response => ', response)
+})
+.catch((err) => {
+    console.log('error ici')
+})
+
+ new Vue({
+    el: '#app',
+    delimiters : ['[[', ']]'],
+    data: {
+        info: null 
+    },
+    mounted () {
+        axios
+        .get('/api/coins')
+        .then((response) => {
+            console.log('response vue => ', response.data.data)
+            this.info = response.data.data
+        })
+    }
+})
+
 
 
 //axios.get('/api/cryptos')
