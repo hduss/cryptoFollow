@@ -11,11 +11,14 @@ window.addEventListener('load', function(event) {
         
                 const currency = e.target.value
                 const valueToChange = e.target.parentElement.parentElement.querySelector('.currentPrice')
+                const currencyId =  e.target.parentElement.parentElement.querySelector('.currency-id').id
+
 	            console.log('value to change => ', valueToChange)
                 console.log('Selected currency => ', currency)
+                console.log('currency id => ', currencyId)
                 console.log('parent => ', e.target.parentElement.parentElement)
                 axios
-                .get('/api/coins/change/bitcoin/' + currency)
+                .get('/api/coins/change/' + currencyId +'/' + currency)
                 .then( response => {
                     console.log('response change => ', response)
                     valueToChange.innerHTML = response.data.data

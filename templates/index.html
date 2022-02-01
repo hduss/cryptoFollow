@@ -25,7 +25,7 @@
             <tbody>
                 <tr v-for="item in infos" :key="item.id" v-if="item !== null">
                     <td>[[ item.market_cap_rank ]]</td> 
-                    <td><a :href="/api/">[[ item.name ]]</a></td> 
+                    <td class="currency-id" v-bind:id="item.id"><a :href="/api/">[[ item.name ]]</a></td> 
                     <td class="currentPrice">[[ item.current_price ]]</td> 
                     <td>
                         <select id="currency" name="currency" @change="changeCurrency($event)">
