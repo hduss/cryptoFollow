@@ -29,10 +29,20 @@ def hello_world():
     print(f'Datas => {datas}')
     return render_template('index.html', tab_head=tab_head, datas=datas, currency=currency, date=date_now)
 
-@app.route('/api/coins')
+
+@app.route('/api/coins', methods=['GET'])
 def get_coins():
 
+    get_args = request.args.get('page')
+    print(f'get_args => {get_args}')
     args = f'?vs_currency=usd&per_page=10'
+
+    if get_args:
+        args += f'&page={get_args}'
+
+    print(f'finla args => {args}')
+    
+    print(f'https://api.coingecko.com/api/v3/coins/markets{args}')
     assets = requests.get(f'https://api.coingecko.com/api/v3/coins/markets{args}')
 
     if assets.status_code == 200:
@@ -46,6 +56,7 @@ def get_coins():
             'status': 300
         })
 
+
 @app.route('/api/coins/change/<id>/<currency>')
 def get_coins_change(id, currency):
 
@@ -57,7 +68,6 @@ def get_coins_change(id, currency):
         'data': data
     })
     
-
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })

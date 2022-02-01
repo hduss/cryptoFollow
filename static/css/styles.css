@@ -13,7 +13,15 @@
     sans-serif;
 }
 
+#currency-img{
+    max-width: 30px;
+    height: auto;
+}
 
+.currency-symbol{
+    color: grey;
+    font-size: 15px;
+}
 
 
 #loading_ghost{

@@ -4,47 +4,60 @@ window.addEventListener('load', function(event) {
         el: '#table-cryptos',
         delimiters : ['[[', ']]'],
         data: {
-            infos: null 
+            infos: null,
+            test: 'je suis un test',
+            page: 1
+        
         },
         methods: {
-            changeCurrency: e => {
+            changeCurrency: function(e) {
         
                 const currency = e.target.value
                 const valueToChange = e.target.parentElement.parentElement.querySelector('.currentPrice')
                 const currencyId =  e.target.parentElement.parentElement.querySelector('.currency-id').id
 
-	            console.log('value to change => ', valueToChange)
-                console.log('Selected currency => ', currency)
-                console.log('currency id => ', currencyId)
-                console.log('parent => ', e.target.parentElement.parentElement)
                 axios
                 .get('/api/coins/change/' + currencyId +'/' + currency)
                 .then( response => {
                     console.log('response change => ', response)
                     valueToChange.innerHTML = response.data.data
+                }) 
+            },
+            showMore: function() {
+
+                this.test = "Je sUIS AUTRE test"
+
+                axios
+                .get('/api/coins?page=2')
+                .then((response) => {
+                    response.data.data.map((el) => this.infos.push(el))
                 })
 
-                
+
+            },
+            displayGraph: function (e) {
+                e.preventDefault()
+                console.log('je suis displayGraph')
             }
         },
-        mounted () {
+        created () {
 
             axios
             .get('/api/coins')
             .then( response => {
                 console.log('response vue => ', response.data.data)
                 this.infos = response.data.data
-
-                setInterval( e => {
+                setInterval(() => {
                     axios
                     .get('/api/coins')
                     .then( response => {
-                        console.log('response vue => ', response.data.data)
+                        console.log('response vue setInterval => ', response.data.data)
                         this.infos = response.data.data
                     })
                 }, 10000)
             })
-        }
+        },
+        
     })
 
 
@@ -58,16 +71,16 @@ window.addEventListener('load', function(event) {
         },
         methods: {
             setTime() {
-                const date = new Date();
-                let hours = date.getHours();
-                let minutes = date.getMinutes();
-                let seconds = date.getSeconds();
-                hours = hours <= 9 ? `${hours}`.padStart(2, 0) : hours;
-                minutes = minutes <= 9 ? `${minutes}`.padStart(2, 0) : minutes;
-                seconds = seconds <= 9 ? `${seconds}`.padStart(2, 0) : seconds;
-                this.hours = hours;
-                this.minutes = minutes;
-                this.seconds = seconds;
+                const date = new Date()
+                let hours = date.getHours()
+                let minutes = date.getMinutes()
+                let seconds = date.getSeconds()
+                hours = hours <= 9 ? `${hours}`.padStart(2, 0) : hours
+                minutes = minutes <= 9 ? `${minutes}`.padStart(2, 0) : minutes
+                seconds = seconds <= 9 ? `${seconds}`.padStart(2, 0) : seconds
+                this.hours = hours
+                this.minutes = minutes
+                this.seconds = seconds
             }
         },
         mounted() {
