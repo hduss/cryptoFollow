@@ -23,11 +23,15 @@
                 <tr v-for="item in infos" :key="item.id" v-if="item !== null">
                     <td>[[ item.market_cap_rank ]]</td> 
                     <td><a :href="/api/">[[ item.name ]]</a></td> 
-                    <td>[[ item.current_price ]]</td> 
+                    <td class="currentPrice">[[ item.current_price ]]</td> 
                     <td>
-                        <select id="currency" name="currency">
+                        <select id="currency" name="currency" @change="changeCurrency($event)">
                             <option value="USD" selected>USD</option>
                             <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="CHF">CHF</option>
+                            <option value="HKD">HKD</option>
+                            <option value="CNY">CNY</option>
                         </select>
                     </td> 
                  </tr>

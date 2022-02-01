@@ -1,6 +1,6 @@
 import requests
 import json
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from datetime import date
 from markupsafe import escape
 
@@ -82,10 +82,18 @@ def crypto_history(crypto_name):
 def change(currency, amount):
     currency_u = currency.upper()
 
+    if request.method == 'GET':
+        print('je susi GET')
+        print(f'ARGS => {request.args.get("page", "")}')
+    else:
+        print('je suis LAAAAA')
+
+    page = request.args.get('page', default = 1, type = int)
+    args = request.args
+    print(f'args +> ', page)
+
+
     return f'Change => {currency} && amount => {amount}'
-
-
-
 
 
 @app.route("/api/test")

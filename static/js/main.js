@@ -6,6 +6,19 @@ window.addEventListener('load', function(event) {
         data: {
             infos: null 
         },
+        methods: {
+            changeCurrency: e => {
+        
+                const val = e.target.value
+
+                const valueToChange = e.target.parentElement.parentElement.querySelector('.currentPrice')
+	            console.log('value to change => ', valueToChange)
+                console.log('Selected currency => ', val)
+                console.log('parent => ', e.target.parentElement.parentElement)
+
+                valueToChange.innerHTML = 10
+            }
+        },
         mounted () {
             axios
             .get('/api/coins')
