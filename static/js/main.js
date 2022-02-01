@@ -9,24 +9,68 @@ window.addEventListener('load', function(event) {
         methods: {
             changeCurrency: e => {
         
-                const val = e.target.value
-
+                const currency = e.target.value
                 const valueToChange = e.target.parentElement.parentElement.querySelector('.currentPrice')
 	            console.log('value to change => ', valueToChange)
-                console.log('Selected currency => ', val)
+                console.log('Selected currency => ', currency)
                 console.log('parent => ', e.target.parentElement.parentElement)
+                axios
+                .get('/api/coins/change/bitcoin/' + currency)
+                .then( response => {
+                    console.log('response change => ', response)
+                    valueToChange.innerHTML = response.data.data
+                })
 
-                valueToChange.innerHTML = 10
+                
             }
         },
         mounted () {
+
             axios
             .get('/api/coins')
             .then( response => {
                 console.log('response vue => ', response.data.data)
                 this.infos = response.data.data
+
+                setInterval( e => {
+                    axios
+                    .get('/api/coins')
+                    .then( response => {
+                        console.log('response vue => ', response.data.data)
+                        this.infos = response.data.data
+                    })
+                }, 10000)
             })
         }
+    })
+
+
+    new Vue({
+        el: '#main-timer',
+        delimiters : ['[[', ']]'],
+        data: {
+            hours : 0,
+            minutes: 0,
+            seconds: 0
+        },
+        methods: {
+            setTime() {
+                const date = new Date();
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let seconds = date.getSeconds();
+                hours = hours <= 9 ? `${hours}`.padStart(2, 0) : hours;
+                minutes = minutes <= 9 ? `${minutes}`.padStart(2, 0) : minutes;
+                seconds = seconds <= 9 ? `${seconds}`.padStart(2, 0) : seconds;
+                this.hours = hours;
+                this.minutes = minutes;
+                this.seconds = seconds;
+            }
+        },
+        mounted() {
+            setInterval(() => this.setTime(), 1000)
+        }
+
     })
 
 

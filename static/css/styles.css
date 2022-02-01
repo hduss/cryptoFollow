@@ -3,7 +3,18 @@
     margin-right: auto; 
     margin-left: auto; 
     margin-top: 75px;
+    font-family: BlinkMacSystemFont, 
+    "Segoe UI", 
+    Roboto, 
+    Oxygen-Sans, 
+    Ubuntu, 
+    Cantarell, 
+    "Helvetica Neue", 
+    sans-serif;
 }
+
+
+
 
 #loading_ghost{
     text-align: center;

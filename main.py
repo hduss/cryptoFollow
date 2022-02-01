@@ -46,6 +46,18 @@ def get_coins():
             'status': 300
         })
 
+@app.route('/api/coins/change/<id>/<currency>')
+def get_coins_change(id, currency):
+
+    args = f'?vs_currency={currency}&ids={id}'
+    assets = requests.get(f'https://api.coingecko.com/api/v3/coins/markets{args}')
+    data = assets.json()[0]['current_price']
+    return jsonify({
+        'status': '200',
+        'data': data
+    })
+    
+
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
