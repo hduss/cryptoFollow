@@ -1,99 +1,69 @@
 window.addEventListener('load', function(event) {
 
-    console.log('app => ', app)
-
     new Vue({
-        el: '#app',
+        el: '#table-cryptos',
         delimiters : ['[[', ']]'],
-    
         data: {
             infos: null 
         },
         mounted () {
             axios
             .get('/api/coins')
-            .then((response) => {
+            .then( response => {
                 console.log('response vue => ', response.data.data)
                 this.infos = response.data.data
             })
         }
     })
 
-    let linkId = document.querySelector(".link_id");
-    let showMore = document.querySelector('#show_more');
 
+    // let showMore = document.querySelector('#show_more');
+    // showMore.addEventListener('click', function (event) {
+    //     event.preventDefault();
+    //     if (!event.target.matches('#show_more')) return;
 
-    linkId.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('je suis click');
-    })
+    //     let limit = event.target.getAttribute("data-limit")
+    //     let offset = event.target.getAttribute("data-offset")
+    //     let table = document.querySelector('#main-tab')
 
+    //     axios.get('/api/cryptos/' + limit + '/' + offset)
+    //     .then(function (response) {
 
-    document.addEventListener('click', (event) =>  {
-        event.preventDefault();
-        if (!event.target.matches('.link_id')) return;
+    //         let returnDatas = response['data']['data']
+    //         console.log('Datas => ', response['data']['data'])
 
-        console.log('Id cryptos => ', event.target.getAttribute('id'))
-        console.log('Target => ', event.target.closest('tr'));
-        let last_row = document.querySelector('#last_row')
+    //         if(returnDatas.length > 0){
 
-        axios.get('/api/cryptos')
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    //             let trNode = document.createElement("tr");
+    //             let trValue = "";
 
-    }, false);
+    //             for(let i = 0; i < returnDatas.length; i++){
 
+    //                 let tr = table.insertRow(-1);
+    //                 let tdRank = tr.insertCell()
+    //                 let tdName = tr.insertCell()
+    //                 let tdPrice = tr.insertCell()
+    //                 let tdCurrency = tr.insertCell()
 
-    showMore.addEventListener('click', function (event) {
-        event.preventDefault();
-        if (!event.target.matches('#show_more')) return;
+    //                 tdRank.innerHTML = returnDatas[i]['rank']
+    //                 tdName.innerHTML = '<a href="" id="' + returnDatas[i]['id'] + '" class="link_id">' + returnDatas[i]['name'] + '</a>'
+    //                 tdPrice.innerHTML = returnDatas[i]['priceUsd']
+    //                 tdCurrency.innerHTML = 'USD'
+    //             }
 
-        let limit = event.target.getAttribute("data-limit")
-        let offset = event.target.getAttribute("data-offset")
-        let table = document.querySelector('#main-tab')
+    // //            let newLimit = parseInt(limit) + 10
+    //             let newOffset = parseInt(offset) + 10
+    //             event.target.setAttribute("data-offset", newOffset)
 
-        axios.get('/api/cryptos/' + limit + '/' + offset)
-        .then(function (response) {
+    //         }else{
+    //             console.log('Fail get datas')
+    //         }
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
 
-            let returnDatas = response['data']['data']
-            console.log('Datas => ', response['data']['data'])
-
-            if(returnDatas.length > 0){
-
-                let trNode = document.createElement("tr");
-                let trValue = "";
-
-                for(let i = 0; i < returnDatas.length; i++){
-
-                    let tr = table.insertRow(-1);
-                    let tdRank = tr.insertCell()
-                    let tdName = tr.insertCell()
-                    let tdPrice = tr.insertCell()
-                    let tdCurrency = tr.insertCell()
-
-                    tdRank.innerHTML = returnDatas[i]['rank']
-                    tdName.innerHTML = '<a href="" id="' + returnDatas[i]['id'] + '" class="link_id">' + returnDatas[i]['name'] + '</a>'
-                    tdPrice.innerHTML = returnDatas[i]['priceUsd']
-                    tdCurrency.innerHTML = 'USD'
-                }
-
-    //            let newLimit = parseInt(limit) + 10
-                let newOffset = parseInt(offset) + 10
-                event.target.setAttribute("data-offset", newOffset)
-
-            }else{
-                console.log('Fail get datas')
-            }
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-
-    }, false);
+    // }, false);
 
 
     // document.addEventListener('click',(e) => {

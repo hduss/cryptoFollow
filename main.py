@@ -7,9 +7,6 @@ from markupsafe import escape
 app = Flask(__name__)
 
 
-
-
-
 @app.route("/")
 def hello_world():
 
@@ -48,7 +45,7 @@ def get_coins():
         return jsonify({
             'status': 300
         })
-        
+
 
 
 @app.route('/api/cryptos', defaults={'limit': 10, 'offset':0 })
