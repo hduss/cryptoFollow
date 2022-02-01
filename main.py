@@ -33,14 +33,24 @@ def hello_world():
 @app.route('/api/coins', methods=['GET'])
 def get_coins():
 
-    get_args = request.args.get('page')
-    print(f'get_args => {get_args}')
-    args = f'?vs_currency=usd&per_page=10'
+    get_nbr_pages = request.args.get('page')
+    get_nbr_results = request.args.get('nbrResults')
 
-    if get_args:
-        args += f'&page={get_args}'
+    print(f'get_nbr_pages => {get_nbr_pages}')
+    print(f'get_nbr_results => {get_nbr_results}')
 
-    print(f'finla args => {args}')
+    args = f'?vs_currency=usd&per_page=10&price_change_percentage=1h,24h,7d'
+    nbr_result = f'&per_page={get_nbr_results}' if get_nbr_results is not None else '&per_page=10'
+    nbr_page = f'&page={get_nbr_pages}' if get_nbr_pages is not None else ''
+
+
+    print(f'nbr_results => {nbr_result}')
+    if get_nbr_pages:
+        args += f'&page={get_nbr_pages}'
+    
+
+
+    print(f'final args => {args}')
     
     print(f'https://api.coingecko.com/api/v3/coins/markets{args}')
     assets = requests.get(f'https://api.coingecko.com/api/v3/coins/markets{args}')
