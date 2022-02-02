@@ -12,22 +12,21 @@
     "Helvetica Neue", 
     sans-serif;
 }
-
 #currency-img{
     max-width: 30px;
     height: auto;
 }
-
 .currency-symbol{
     color: grey;
     font-size: 15px;
 }
 
-
 #loading_ghost{
     text-align: center;
 }
-
+.currentPrice, th{
+    color: grey;
+}
 .loading-gif{
     height: 25px;
     width: auto;

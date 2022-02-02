@@ -11,14 +11,13 @@ window.addEventListener('load', function(event) {
             contentButton: 'Show 10 more',
             lessRender: {
                 color: 'red',
-                fontSize: '14px'
             },
             plusRender: {
                 color: 'green',
-                fontSize: '14px'
             }
         },
         methods: {
+
             // Change currency of one line
             changeCurrency: function(e) {
         
@@ -33,14 +32,12 @@ window.addEventListener('load', function(event) {
                     valueToChange.innerHTML = response.data.data
                 }) 
             },
+
             // show 10 mor results
             showMore: function() {
-
-
                 this.loading = true
                 baseContent = this.content
                 this.contentButton = 'Loading ...'
-            
                 console.log('this nbr results => ', this.nbrResults)
 
                 axios
@@ -52,10 +49,10 @@ window.addEventListener('load', function(event) {
                     console.log('base content => ', baseContent)
                     this.contentButton = 'Show 10 more'
                 })
-
+                
                 console.log('nbrResults aftrer showMore => ', this.nbrResults)
-
             },
+
             // display graph for one currency
             displayGraph: function (e) {
                 e.preventDefault()
@@ -108,6 +105,18 @@ window.addEventListener('load', function(event) {
         mounted() {
             setInterval(() => this.setTime(), 1000)
         }
-
     })
+
+
+    Vue.component('render-percent', {
+        data: function () {
+            return {
+                count: 0
+            }
+        },
+        props: ['amount'],
+        template: '<h3>{{ amount }}</h3>'
+      })
+
+    new Vue({ el: '#components-demo' })
 });
