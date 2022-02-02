@@ -39,14 +39,20 @@ def get_coins():
     print(f'get_nbr_pages => {get_nbr_pages}')
     print(f'get_nbr_results => {get_nbr_results}')
 
-    args = f'?vs_currency=usd&per_page=10&price_change_percentage=1h,24h,7d'
-    nbr_result = f'&per_page={get_nbr_results}' if get_nbr_results is not None else '&per_page=10'
-    nbr_page = f'&page={get_nbr_pages}' if get_nbr_pages is not None else ''
+    args = f'?vs_currency=usd&price_change_percentage=1h,24h,7d'
+    nbr_result = f'&per_page={get_nbr_results}' if get_nbr_results else '&per_page=10'
+    nbr_page = f'&page={get_nbr_pages}' if get_nbr_pages else ''
+
+    print(f'NbrPages => {nbr_page}')
+
+    args += nbr_result + nbr_page
+    print(f'New args => {args}')
 
 
-    print(f'nbr_results => {nbr_result}')
-    if get_nbr_pages:
-        args += f'&page={get_nbr_pages}'
+
+    # print(f'nbr_results => {nbr_result}')
+    # if get_nbr_pages:
+    #     args += f'&page={get_nbr_pages}'
     
 
 

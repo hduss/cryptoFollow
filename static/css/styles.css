@@ -27,3 +27,8 @@
 #loading_ghost{
     text-align: center;
 }
+
+.loading-gif{
+    height: 25px;
+    width: auto;
+}
