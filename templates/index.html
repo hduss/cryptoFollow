@@ -37,15 +37,25 @@
                     <tr v-for="item in infos" :key="item.id" v-if="item !== null">
                         <td>#[[ item.market_cap_rank ]]</td> 
                         <td class="currency-id" v-bind:id="item.id">
-                            <img id=currency-img v-bind:src="[[ item.image ]]">
+                            <img id="currency-img" v-bind:src="[[ item.image ]]">
                             <a :href="/api/" v-on:click="displayGraph">[[ item.name ]]</a>
                             <span class="currency-symbol">[[ item.symbol.toUpperCase() ]]</span>
                             
                         </td> 
-                        <td class="currentPrice">[[ item.current_price ]]</td> 
-                        <td>[[ item.price_change_percentage_1h_in_currency ]]</td>
-                        <td>[[ item.price_change_percentage_24h_in_currency ]]</td>
-                        <td>[[ item.price_change_percentage_7d_in_currency ]]</td>
+                        <td class="currentPrice">$ [[ item.current_price ]]</td> 
+                        <td 
+                            v-bind:style="[item.price_change_percentage_1h_in_currency >= 0 ? plusRender : lessRender]"
+                            v-if=>
+                            [[ item.price_change_percentage_1h_in_currency ]]
+                        </td>
+                        <td
+                            v-bind:style="[item.price_change_percentage_24h_in_currency >= 0 ? plusRender : lessRender]">
+                            [[ item.price_change_percentage_24h_in_currency ]]
+                        </td>
+                        <td
+                            v-bind:style="[item.price_change_percentage_7d_in_currency >= 0 ? plusRender : lessRender]">
+                            [[ item.price_change_percentage_7d_in_currency ]]
+                        </td>
                         <td>USD</td>
                         <!-- <td>
                     

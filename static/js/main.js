@@ -8,7 +8,15 @@ window.addEventListener('load', function(event) {
             page: 2,
             nbrResults: 10,
             loading: false,
-            contentButton: 'Show 10 more'
+            contentButton: 'Show 10 more',
+            lessRender: {
+                color: 'red',
+                fontSize: '14px'
+            },
+            plusRender: {
+                color: 'green',
+                fontSize: '14px'
+            }
         },
         methods: {
             // Change currency of one line
